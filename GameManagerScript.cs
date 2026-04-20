@@ -30,6 +30,11 @@ public class GameManagerScript : MonoBehaviour
             victoryUI.SetActive(false);
 
         UpdateScore();
+
+        if (SerialManager.Instance != null)
+        {
+            SerialManager.Instance.SendScore(score);
+        }
     }
 
     public void AddScore(int points)
@@ -37,6 +42,12 @@ public class GameManagerScript : MonoBehaviour
         score += points;
         UpdateScore();
 
+
+        if (SerialManager.Instance != null)
+        {
+            SerialManager.Instance.SendScore(score);
+        }
+        
         if (score >= winScore)
         {
             WinGame();
